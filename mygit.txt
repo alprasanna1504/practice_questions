@@ -1,0 +1,174 @@
+
+Employee table :
+
+
+CREATE TABLE EMPY
+       (EMPNO int ,
+        ENAME VARCHAR(10),
+        JOB VARCHAR(9),
+        MGR int,
+        HIREDATE date,
+        SAL int,
+        COMM int,
+        DEPTNO int,
+        GRADE int);
+
+
+INSERT INTO EMPY VALUES
+        (7369, 'SMITH',  'CLERK',     7902,
+CAST('1980-12-17' as DATE),  800, NULL, 20, 5);
+INSERT INTO EMPY VALUES
+        (7499, 'ALLEN',  'SALESMAN',  7698,
+CAST('1981-02-20' as DATE), 1600,  300, 30, 3);
+INSERT INTO EMPY VALUES
+        (7521, 'WARD',   'SALESMAN',  7698,
+CAST('1981-02-22' as DATE), 1250,  500, 30, 4);
+INSERT INTO EMPY VALUES
+        (7566, 'JONES',  'MANAGER',   7839,
+CAST('1981-04-02' as DATE),  2975, NULL, 20, 2);
+INSERT INTO EMPY VALUES
+        (7654, 'MARTIN', 'SALESMAN',  7698,
+CAST('1981-09-28' as DATE), 1250, 1400, 30, 4);
+INSERT INTO EMPY VALUES
+        (7698, 'BLAKE',  'MANAGER',   7839,
+CAST('1981-05-01' as DATE),  2850, NULL, 30, 2);
+INSERT INTO EMPY VALUES
+        (7782, 'CLARK',  'MANAGER',   7839,
+CAST('1981-06-09' as DATE),  2450, NULL, 10, 2);
+INSERT INTO EMPY VALUES
+        (7788, 'SCOTT',  'ANALYST',   7566,
+CAST('1982-12-09' as DATE), 3000, NULL, 20, 1);
+INSERT INTO EMPY VALUES
+        (7839, 'KING',   'PRESIDENT', NULL,
+CAST('1981-11-17' as DATE), 5000, NULL, 10, 1);
+INSERT INTO EMPY VALUES
+        (7844, 'TURNER', 'SALESMAN',  7698,
+CAST('1981-09-08' as DATE),  1500, NULL, 30, 3);
+INSERT INTO EMPY VALUES
+        (7876, 'ADAMS',  'CLERK',     7788,
+CAST('1983-01-12' as DATE), 1100, NULL, 20, 4);
+INSERT INTO EMPY VALUES
+        (7900, 'JAMES',  'CLERK',     7698,
+CAST('1981-12-03' as DATE),   950, NULL, 30, 5);
+
+INSERT INTO EMPY VALUES
+        (7902, 'FORD',   'ANALYST',   7566,
+CAST('1981-12-03' as DATE),  3000, NULL, 20, 1);
+INSERT INTO EMPY VALUES
+        (7934, 'MILLER', 'CLERK',     7782,
+CAST('1982-01-23' as DATE), 1300, NULL, 10, 3);
+
+DEPT TABLE:
+CREATE TABLE DEPT
+       (DEPTNO INT,
+        DNAME VARCHAR(14),
+        LOC VARCHAR(13) );
+
+
+INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO DEPT VALUES (20, 'RESEARCH',   'DALLAS');
+INSERT INTO DEPT VALUES (30, 'SALES',      'CHICAGO');
+INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
+QUERIES:
+
+1.	Displayalltheinformation oftheEMPtable?
+Select * from EMP
+
+2.	Displayunique Jobs from EMP table?
+select distinct job from empy order by job ;
+
+3.	ListtheempsintheascorderoftheirSalaries?
+Select * from empy order by sal ;
+
+4.	List the details of the emps in asc order of the Dptnos and desc of Jobs?
+	Select * from (select * from empy order by job desc) tempy order by deptno ;
+5.	Display all the unique job groups in the descending order?
+	
+6.	Displayall thedetails ofall ‘Mgrs’
+Select * from EMPY where Job=’manager’ ;
+7.	Listthe emps whojoined before 1981.
+
+8.	Listthe Empno, Ename,Sal, Daily sal ofallempsintheascorderofAnnsal.
+
+
+9.	Displaythe Empno, Ename,job, Hiredate, Expof all Mgrs
+Select empno,ename, Hiredate from empy where Job=’manager’ ;
+10.	Listthe Empno, Ename,Sal, Exp ofall emps workingfor Mgr 7369.
+
+11.	Displayallthe detailsofthe empswhoseComm. Ismorethan theirSal.
+Select * from empy where comm>sal ;
+12.	List theemps inthe ascorderof Designationsof thosejoinedafter thesecond halfof1981.
+
+13.	Listthe emps alongwith their Expand Daily Sal ismore than Rs.100.
+
+14.	Listthe emps whoare either ‘CLERK’or ‘ANALYST’ inthe Desc order.
+
+
+15.	Listtheempswhojoinedon1-MAY-81,3-DEC-81,17-DEC-81,19-JAN-80inascorder of seniority.
+
+16.	Listthe emp who are workingfor the Deptno 10 or20.
+
+17.	Listthe emps who arejoinedintheyear81.
+18.	Listthe emps who arejoinedinthemonthofAug1980.
+19.	Listthe empsWho Annualsal rangingfrom22000and 45000.
+20.	ListtheEnames thosearehaving fivecharactersintheirNames.
+Select * from empy where ename like ‘_____’ ;
+21.	Listthe Enamesthose arestarting with‘S’ andwith fivecharacters.
+Select * from empy where ename like ‘S____’ ;
+
+22.	Listtheempsthosearehavingfour charsandthirdcharactermustbe ‘r’.
+Select * from empy where ename like ‘__r_’ ;
+
+23.	ListtheFivecharacter namesstartingwith‘S’andendingwith‘H’.
+Select * from empy where ename like ‘S___H’  ;
+
+24.	Listthe emps whojoined in January.
+
+25.	Listthe emps whojoined in themonthofwhichsecondcharacteris‘a’.
+
+26.	Listthe empswhoseSalisfourdigitnumberendingwithZero.
+
+27.	Listtheempswhosenameshavingacharacterset‘ll’together.
+Select * from empy where ename like “%ll%” ;
+28.	Listtheempsthosewhojoinedin80’s.
+	
+29.	Listthe empswhodoesnotbelongto Deptno20.
+
+Select * from empy where deptno!=20 ;
+30.	Listall the empsexcept ‘PRESIDENT’&‘MGR” in ascorder of Salaries.
+31.	Listall the emps who joinedbefore or after 1981.
+32.	Listthe emps whose Empnonot starting with digit78.
+33.	Listthe emps whoare working under ‘MGR’.
+Select * from empy where mgr=7698;
+34.	Listthe emps who joinedin any yearbutnot belongs to themonth of March.
+35.	ListalltheClerksofDeptno20.
+select * from (select * from empy where deptno=20) empy where job='clerk';
+select * from empy where job=”clerk” and deptno=20;
+36.	Listthe emps of Deptno 30 or10 joined in the year 1981.
+
+37.	DisplaythedetailsofSMITH.
+Select * from empy where ename=”smith”;
+38.	Displaythe locationof  SMITH.
+select * from (Select e.EMPNO, e.JOB, e.MGR, e.HIREDATE, e.SAL, e.COMM, d.dname, d.deptno,d.loc, e.GRADE, e.DEPTNO as edeptno,e.ENAME from empy e left join dept d on e.deptno=d.deptno) empy where ename="smith";
+39.	ListthetotalinformationofEMPtablealongwithDNAMEandLocofalltheempsWorking Under ‘ACCOUNTING’& ‘RESEARCH’ in the ascDeptno.
+40.	ListtheEmpno,Ename,Sal,Dnameofallthe‘MGRS’and‘ANALYST’working in New York, Dallas with an exp more than 7 years without receiving theCommasc orderofLoc.
+41.	Display the Empno, Ename, Sal, Dname, Loc, Deptno, Job of all emps working atCJICAGO or working for ACCOUNTING dept with Ann Sal>28000, but the Salshould not be=3000 or 2800 who doesn’t belongs to the Mgr and whose no ishavingadigit‘7’or‘8’in3rdpositionintheascorderofDeptnoanddescorderofjob.
+42.	DisplaythetotalinformationoftheempsalongwithGradesintheascorder.
+43.	ListalltheGrade2andGrade3emps.
+44.	DisplayallGrade4,5AnalystandMgr.
+45.	List the Empno, Ename, Sal, Dname, Grade, Exp, and Ann Sal of emps workingfor Dept10 or20.
+46.	List all the information of emp with Loc and the Grade of all the emps belong tothe Grade range from 2 to 4 working at the Dept those are not starting with charset ‘OP’ and not ending with ‘S’ with the designation having a char ‘a’ any wherejoined in the year 1981 but not in the month of Mar or Sep and Sal not end with‘00’intheascorderofGrades
+
+47.	Listthedetails ofthe Deptsalong withEmpno,Ename orwithout theemps
+48.	Listthe detailsof theemps whoseSalaries morethan theemployee BLAKE.
+49.	Listthe empswhose Jobs aresame as ALLEN.
+50.	Listthe emps who aresenior to King.
+51.	ListtheEmps whoareseniortotheirownMGRS.
+52.	Listthe Emps of Deptno 20 whose Jobs are same as Deptno10.
+53.	ListtheEmpswhoseSalissame asFORDor SMITH indesc orderof Sal.
+54.	Listtheemps WhoseJobs aresame asMILLER orSal ismore thanALLEN.
+55.	Listthe Emps whoseSalis>thetotal remuneration of theSALESMAN.
+56.	ListtheempswhoareseniortoBLAKEworkingatCHICAGO&BOSTON.
+57.	List the Emps of Grade 3,4 belongs to the dept ACCOUNTING and RESEARCHwhose Sal is more than ALLEN and exp more than SMITH in the asc order ofEXP.
+58.	Listthe emps whosejobs same asSMITH or ALLEN.
+
